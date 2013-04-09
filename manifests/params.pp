@@ -8,7 +8,7 @@ class mono::params {
     /(?i:linux|redhat)/ => [
       'glib2-devel',
       'libpng-devel',
-      'libjpeg-devel',
+      'libjpeg-turbo-devel',
       'giflib-devel',
       'libtiff-devel',
       'libexif-devel',
