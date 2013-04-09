@@ -1,8 +1,8 @@
 class mono::params {
   $version = '3.0.6'
   $script  = $::osfamily ? {
-    /(?i:linux|redhat)/ => 'mono/build-mono-debian.sh',
-    default             => 'mono/build-mono-rhel.sh',
+    /(?i:linux|redhat)/ => 'puppet:///modules/mono/build-mono-rhel.sh',
+    default             => 'puppet:///modules/mono/build-mono-debian.sh',
   }
   $packages = $::osfamily ? {
     /(?i:linux|redhat)/ => [
