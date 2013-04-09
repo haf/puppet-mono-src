@@ -31,7 +31,12 @@ class mono::package {
   if $::operatingsystem == 'CentOS' {
     mono::yum_install { $packages:
       ensure     => installed,
-      enablerepo => ['C6.3-base'],
+      enablerepo => ['C6.2-base'],
     }
+
+    Mono::Installpattern['mono']       { require +> Mono::Yum_install[$packages] }
+    Mono::Installpattern['libgdiplus'] { require +> Mono::Yum_install[$packages] }
+  } else {
+    ensure_packages($packages)
   }
 }
