@@ -26,6 +26,7 @@ class mono::package {
     wget::fetch { 'download_mono':
       source      => $package_source,
       destination => "/tmp/${mono::params::package_name}",
+      flags       => '--no-check-certificate',
       require     => Class['wget'],
     }
     package { 'mono':
