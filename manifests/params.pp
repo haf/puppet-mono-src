@@ -33,4 +33,7 @@ class mono::params {
       'libtool'
     ],
   }
+
+  $package_name   = "mono-${version}-1.x86_64.rpm" 
+  $package_source = "puppet:///modules/mono/$package_name"
 }
