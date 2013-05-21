@@ -1,3 +1,4 @@
+sudo gem install fpm
 ./configure --prefix=/opt/mono
 make
 make install DESTDIR=/tmp/mono-install
