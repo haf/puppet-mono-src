@@ -1,23 +1,22 @@
 # http://wiki.centos.org/HowTos/SetupRpmBuildEnvironment
 set -e
 
-VERSION=${1:-3.0.10}
+VERSION=${1:-3.0.7}
 
 # build rpm
-sudo yum -y install gcc mysql-devel ruby-devel rubygems rpm-build redhat-rpm-config gettext 
+sudo yum -y install gcc mysql-devel ruby-devel rubygems rpm-build redhat-rpm-config gettext libtool
 curl -O --silent http://download.mono-project.com/sources/mono/mono-$VERSION.tar.bz2
 
-# for current HEAD: curl -O -k -L https://github.com/mono/mono/tarball/master
 tar jxf mono-$VERSION.tar.bz2
 
-pushd mono-$VERSION
-
-# compile mono
-# $ sudo yum -y install libtool
+# for current HEAD: curl -O -L https://github.com/mono/mono/tarball/master
 # $ pushd mono-mono-SOMEHASH
-# $ ./autogen.sh --prefix=/opt/mono --with-sgen=yes --with-gc=sgen
+# $ ./autogen.sh --prefix=/opt/mono #--with-sgen=yes --with-gc=sgen
 
-./configure --prefix=/opt/mono --with-sgen=yes --with-gc=sgen
+pushd mono-$VERSION
+curl -O https://raw.github.com/EventStore/EventStore/master/src/EventStore/Scripts/mono/0001-ES-patch.patch
+patch -p1 < 0001-ES-patch.patch
+./configure --prefix=/opt/mono #--with-sgen=yes --with-gc=sgen
 make
 make install DESTDIR=/tmp/mono-$VERSION
 popd
