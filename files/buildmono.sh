@@ -1,6 +1,6 @@
 # http://wiki.centos.org/HowTos/SetupRpmBuildEnvironment
 set -e
-VERSION=${0:-3.0.10}
+VERSION=${1:-3.0.10}
 sudo yum -y install gcc mysql-devel ruby-devel rubygems rpm-build redhat-rpm-config gettext
 sudo gem install fpm --no-rdoc --no-ri
 curl -O --silent http://download.mono-project.com/sources/mono/mono-$VERSION.tar.bz2
