@@ -6,31 +6,36 @@ class mono::params {
   }
   $packages = $::osfamily ? {
     /(?i:linux|redhat)/ => [
-      'glib2-devel',
-      'libpng-devel',
-      'libjpeg-turbo-devel',
-      'giflib-devel',
-      'libtiff-devel',
-      'libexif-devel',
-      'libX11-devel',
-      'fontconfig-devel',
-      'gcc-c++',
-      # shared:
-      'make',
-      'gettext',
-      'autoconf',
-      'automake',
-      'libtool'
+		'glib2-devel',
+		'libpng-devel',
+		'libjpeg-turbo-devel',
+		'giflib-devel',
+		'libtiff-devel',
+		'libexif-devel',
+		'libX11-devel',
+		'fontconfig-devel',
+		'gcc-c++',
+		# shared:
+		'make',
+		'gettext',
+		'autoconf',
+		'automake',
+		'libtool'
     ],
     default => [
-      'git-core',
-      'g++',
-      # shared:
-      'make',
-      'gettext',
-      'autoconf',
-      'automake',
-      'libtool'
+		'git-core',
+		'g++',
+		'pkg-config',
+		'libx11-dev',
+		'libglib2.0-dev',
+		'libpng12-dev',
+		'libfontconfig1-dev',
+		# shared:
+		'make',
+		'gettext',
+		'autoconf',
+		'automake',
+		'libtool'
     ],
   }
 
