@@ -5,9 +5,9 @@ class mono(
   $package_source = $mono::params::package_source,
   $use_pkg        = false
 ) inherits mono::params {
-  anchor { 'mono::start': } ->
-
-  class { 'mono::package': } ->
-
+  anchor { 'mono::start': } 
+  ->
+  class { 'mono::package': }
+  ->
   anchor { 'mono::end': }
 }

@@ -17,7 +17,7 @@ class mono::package {
   #    ],
   #  }
   #}
-
+  
   if $use_pkg {
     #file { "/tmp/${mono::params::package_name}":
     #  ensure => present,
@@ -36,6 +36,7 @@ class mono::package {
       require  => Wget::Fetch['download_mono'],
     }
   } else {
+
     mono::installpattern { 'libgdiplus':
       source      => "http://download.mono-project.com/sources/libgdiplus/libgdiplus-2.10.9.tar.bz2",
       version     => '2.10.9',
@@ -47,7 +48,7 @@ class mono::package {
       source      => "http://download.mono-project.com/sources/mono/mono-$version.tar.bz2",
       version     => $version,
     }
-  
+
     if $::operatingsystem == 'CentOS' {
       mono::yum_install { $packages:
         ensure     => installed,
@@ -58,6 +59,9 @@ class mono::package {
       Mono::Installpattern['libgdiplus'] { require +> Mono::Yum_install[$packages] }
     } else {
       ensure_packages($packages)
+
+      Mono::Installpattern['mono']       { require +> Package[$packages] }
+      Mono::Installpattern['libgdiplus'] { require +> Package[$packages] }
     }
   }
 }
