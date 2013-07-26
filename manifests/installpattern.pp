@@ -39,6 +39,8 @@ define mono::installpattern(
     cwd       => $target_dir,
     creates   => "$target_dir/config.h",
     subscribe => Exec["tar_$title"],
+    user      => "root",
+    path      => '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin',
   }
 
   file { $shell_wrapper:
@@ -54,5 +56,6 @@ define mono::installpattern(
     creates     => $creates,
     timeout     => 0,
     path        => '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin',
+    user	  	  => 'root'
   }
 }
