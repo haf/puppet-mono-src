@@ -39,17 +39,15 @@ define mono::installpattern(
     cwd       => $target_dir,
     creates   => "$target_dir/config.h",
     subscribe => Exec["tar_$title"],
-  	user	    => "root",
-  	path      => '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin',
-  	logoutput => "on_failure",
-  	require   => [ Package[gettext] ]
+    user      => "root",
+    path      => '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin',
   }
 
   file { $shell_wrapper:
     ensure  => present,
     source  => 'puppet:///modules/mono/wrapper.sh',
     mode    => '550',
-    require => Exec["configure_$title"]
+    require => Exec["configure_$title"],
   }
 
   exec { "make_$title":
